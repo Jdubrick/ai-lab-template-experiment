@@ -219,7 +219,7 @@ spec:
       action: fetch:template
       input:
         url: ../../skeleton/model-servers/${{ parameters.modelServerLocal }}
-        targetPath: source/deployment
+        targetPath: source/deployment/model_server
         copyWithoutRender:
           - model-servers/${{ parameters.modelServerLocal }}
     - id: fetch-github-action
