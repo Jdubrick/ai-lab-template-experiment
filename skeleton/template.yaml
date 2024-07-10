@@ -202,7 +202,7 @@ spec:
         url: ../../skeleton/local-deploy
         targetPath: source
         copyWithoutRender:
-          - deployment/model-servers/${{ parameters.modelServerLocal }}
+          - deployment/model-servers
           - .assets
         values:
           imageRegistry: ${{ parameters.imageRegistry }}
@@ -212,7 +212,16 @@ spec:
           name: ${{ parameters.name }}
           description: sed.edit.DESCRIPTION
           modelServer: ${{ parameters.modelServerLocal }}
-          contextDir: ${{ './deployment/model_servers/${{ parameters.modelServerLocal }}'}}
+          contextDir: ${{ './deployment/model_servers/parameters.modelServerLocal'}}
+    - id: fetch-model-server
+      name: Fetch Model Server For Local Deployment
+      if: ${{ parameters.deployMethod !== 'Openshift' }}
+      action: fetch:template
+      input:
+        url: ../../skeleton/model-servers/${{ parameters.modelServerLocal }}
+        targetPath: source/deployment
+        copyWithoutRender:
+          - model-servers/${{ parameters.modelServerLocal }}
     - id: fetch-github-action
       name: Fetch GitHub Action
       action: fetch:plain
