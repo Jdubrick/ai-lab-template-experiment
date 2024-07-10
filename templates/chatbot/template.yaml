@@ -202,7 +202,7 @@ spec:
         url: ../../skeleton/local-deploy
         targetPath: source
         copyWithoutRender:
-          - deployment/model-servers
+          - deployment/model-servers/${{ parameters.modelServerLocal }}
           - .assets
         values:
           imageRegistry: ${{ parameters.imageRegistry }}
@@ -212,6 +212,7 @@ spec:
           name: ${{ parameters.name }}
           description: Chatbot Application example with LLM enabled chat applications
           modelServer: ${{ parameters.modelServerLocal }}
+          contextDir: ${{ './deployment/model_servers/${{ parameters.modelServerLocal }}'}}
     - id: fetch-github-action
       name: Fetch GitHub Action
       action: fetch:plain
