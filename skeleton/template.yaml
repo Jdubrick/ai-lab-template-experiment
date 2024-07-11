@@ -403,6 +403,7 @@ spec:
       - title: Open GitOps Resource in catalog
         icon: catalog
         entityRef: ${{ steps['register-gitops'].output.entityRef }}
-      - if: ${{ parameters.deployMethod === 'Local' }}
-        title: Local Deployment Instructions
+      {% if parameters.deployMethod === 'Local' %}
+      - title: Local Deployment Instructions
         url: https://${{ parameters.githubServer if parameters.hostType === 'GitHub' else parameters.gitlabServer }}/${{ parameters.repoOwner }}/${{ parameters.repoName }}/blob/${{ parameters.branch }}/deployment/README.md
+      {% endif %}
