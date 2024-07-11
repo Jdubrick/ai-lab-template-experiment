@@ -404,7 +404,11 @@ spec:
         icon: catalog
         entityRef: ${{ steps['register-gitops'].output.entityRef }}
       - title: Local Deployment Instructions
-        url: ${{ steps['publish-github'].output.repoContentsUrl/deployment/README.md if steps['publish-github'].output and parameters.deployMethod === 'Local' }}
+        url: ${{ 'steps['publish-github'].output.repoContentsUrl'/deployment/README.md if steps['publish-github'].output and parameters.deployMethod === 'Local' }}
         # url: ${{ 'https://'(parameters.githubServer if parameters.hostType === 'GitHub' else parameters.gitlabServer)/${{ parameters.repoOwner }}/${{ parameters.repoName }}/blob/${{ parameters.branch }}/deployment/README.md if parameters.deployMethod === 'Local' }} }}
       - title: Local Deployment Instructions
-        url: ${{ steps['publish-gitlab'].output.repoContentsUrl/deployment/README.md if steps['publish-gitlab'].output and parameters.deployMethod === 'Local' }}
+        url: ${{ 'steps['publish-gitlab'].output.repoContentsUrl'/deployment/README.md if steps['publish-gitlab'].output and parameters.deployMethod === 'Local' }}
+      - title: Local Deployment Instructions Test
+        url: ${{ 'steps['publish-github'].output.repoContentsUrl'+'/deployment/README.md' if steps['publish-github'].output and parameters.deployMethod === 'Local' }}
+      - title: Local Deployment Instructions Test Three
+        url: ${{ [steps['publish-github'].output.repoContentsUrl, '/deployment/README.md'] | join if steps['publish-github'].output and parameters.deployMethod === 'Local' }}
