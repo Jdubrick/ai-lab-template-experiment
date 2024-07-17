@@ -8,3 +8,4 @@ spec:
     - ./templates/sampleapp/template.yaml
     - ./templates/codegen/template.yaml
     - ./templates/chatbot/template.yaml
+    - ./templates/custom-chatbot/template.yaml
